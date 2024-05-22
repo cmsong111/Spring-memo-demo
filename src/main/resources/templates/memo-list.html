@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>
+    <span th:text="${appName}"></span>
+</h1>
+
+<a href="/create">메모 등록</a>
+
+<table border="1">
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>내용</th>
+        <th>작성일</th>
+        <th>수정</th>
+        <th>삭제</th>
+    </tr>
+    <tr th:each="memo : ${memoList}">
+        <td th:text="${memo.id}"></td>
+        <td th:text="${memo.title}"></td>
+        <td th:text="${memo.content}"></td>
+        <td th:text="${memo.createdAt}"></td>
+        <td>
+            <a th:href="@{'/edit/' + ${memo.id}}">수정</a>
+        </td>
+        <td>
+            <a th:href="@{'/delete/' + ${memo.id}}">삭제</a>
+        </td>
+    </tr>
+</body>
+</html>
