@@ -1,6 +1,7 @@
 package deu.gdsc.memo.service;
 
 import deu.gdsc.memo.dto.MemoEditRequestForm;
+import deu.gdsc.memo.dto.MemoRequestForm;
 import deu.gdsc.memo.dto.MemoResponse;
 
 import java.util.List;
@@ -25,10 +26,10 @@ public interface MemoService {
     /**
      * 메모를 생성한다.
      *
-     * @param memoResponse 메모 정보
+     * @param memoRequestForm 생성할 메모 정보
      * @return MemoResponse 생성된 메모
      */
-    MemoResponse createMemo(MemoResponse memoResponse);
+    MemoResponse createMemo(MemoRequestForm memoRequestForm);
 
     /**
      * 메모 수정용 객체를 가져온다.
@@ -36,16 +37,16 @@ public interface MemoService {
      * @param id 메모 ID
      * @return MemoEditRequestForm 수정할 메모 정보
      */
-    MemoEditRequestForm editMemo(Long id);
+    MemoEditRequestForm getEditMemoForm(Long id);
 
     /**
      * 메모를 수정한다.
      *
      * @param id           메모 ID
-     * @param memoResponse 수정할 메모 정보
+     * @param memoEditRequestForm 수정할 메모 정보
      * @return MemoResponse 수정된 메모
      */
-    MemoResponse editMemo(Long id, MemoResponse memoResponse);
+    MemoResponse editMemo(Long id, MemoEditRequestForm memoEditRequestForm);
 
     /**
      * 메모를 삭제한다.

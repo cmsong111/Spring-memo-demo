@@ -17,6 +17,7 @@
         <th>제목</th>
         <th>내용</th>
         <th>작성일</th>
+        <th>수정일</th>
         <th>수정</th>
         <th>삭제</th>
     </tr>
@@ -25,6 +26,7 @@
         <td th:text="${memo.title}"></td>
         <td th:text="${memo.content}"></td>
         <td th:text="${memo.createdAt}"></td>
+        <td th:text="${memo.updatedAt}"></td>
         <td>
             <a th:href="@{'/edit/' + ${memo.id}}">수정</a>
         </td>

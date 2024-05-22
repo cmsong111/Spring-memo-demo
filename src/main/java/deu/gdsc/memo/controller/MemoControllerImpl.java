@@ -2,7 +2,8 @@ package deu.gdsc.memo.controller;
 
 import deu.gdsc.memo.dto.MemoEditRequestForm;
 import deu.gdsc.memo.dto.MemoRequestForm;
-import deu.gdsc.memo.dto.MemoResponse;
+import deu.gdsc.memo.service.MemoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,22 +11,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class MemoControllerImpl implements MemoController {
 
     @Value("${spring.application.name}")
     private String appName;
 
+    private final MemoService memoService;
+
+    @Autowired
+    public MemoControllerImpl(MemoService memoService) {
+        this.memoService = memoService;
+    }
+
     @Override
     @GetMapping("/")
     public String getMemoList(Model model) {
-        //TODO: 메모 리스트를 가져와서 model에 담아서 memo-list.html로 이동
-        List<MemoResponse> memoList = new ArrayList<>();
         model.addAttribute("appName", appName);
-        model.addAttribute("memoList", memoList);
+        model.addAttribute("memoList", memoService.getMemoList());
         return "memo-list";
     }
 
@@ -39,32 +42,31 @@ public class MemoControllerImpl implements MemoController {
     @Override
     @PostMapping("/create")
     public String createMemo(MemoRequestForm memoRequestForm) {
-        //TODO: 메모 생성 요청
+        memoService.createMemo(memoRequestForm);
         return "redirect:/";
     }
 
     @Override
-    @GetMapping("/{id}/edit")
+    @GetMapping("/edit/{id}")
     public String requestEditMemoForm(
             @PathVariable Long id, Model model) {
-        //TODO: 메모 수정 객체 가져오기
-        model.addAttribute("memoEditRequestForm", new MemoEditRequestForm());
+        model.addAttribute("memoEditRequestForm", memoService.getEditMemoForm(id));
         return "memo-edit";
     }
 
     @Override
-    @PostMapping("/{id}/edit")
+    @PostMapping("/edit/{id}")
     public String editMemo(
             @PathVariable Long id, MemoEditRequestForm memoEditRequestForm) {
-        //TODO: 메모 수정 요청 처리
+        memoService.editMemo(id, memoEditRequestForm);
         return "redirect:/";
     }
 
     @Override
-    @GetMapping("/{id}/delete")
+    @GetMapping("/delete/{id}")
     public String deleteMemo(
             @PathVariable Long id) {
-        // TODO: 메모 삭제 요청 처리
+        memoService.deleteMemo(id);
         return "redirect:/";
     }
 }

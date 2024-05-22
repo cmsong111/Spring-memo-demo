@@ -16,4 +16,7 @@ public interface MemoMapper {
 
     // 메모 엔티티를 메모 응답 정보로 변환
     MemoResponse toMemoResponse(Memo memo);
+
+    // 메모 수정 객체
+    MemoEditRequestForm toMemoEditRequestForm(Memo memo);
 }
