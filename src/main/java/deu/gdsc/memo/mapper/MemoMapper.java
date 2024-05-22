@@ -4,7 +4,9 @@ import deu.gdsc.memo.dto.MemoEditRequestForm;
 import deu.gdsc.memo.dto.MemoRequestForm;
 import deu.gdsc.memo.dto.MemoResponse;
 import deu.gdsc.memo.entity.Memo;
+import org.mapstruct.Mapper;
 
+@Mapper(componentModel = "spring")
 public interface MemoMapper {
     // 메모 생성 요청 정보를 메모 엔티티로 변환
     Memo toMemo(MemoRequestForm memoRequestForm);
