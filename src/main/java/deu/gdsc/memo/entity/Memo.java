@@ -1,10 +1,16 @@
 package deu.gdsc.memo.entity;
 
+import jakarta.persistence.*;
+
 import java.sql.Timestamp;
 
+@Entity
 public class Memo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    @Column(columnDefinition = "LONGTEXT")
     private String content;
     private Timestamp createdAt;
     private Timestamp updatedAt;

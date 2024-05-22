@@ -1,6 +1,10 @@
 package deu.gdsc.memo.repository;
 
+import deu.gdsc.memo.entity.Memo;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MemoRepository {
+@Repository
+public interface MemoRepository extends JpaRepository<Memo, Long> {
 
 }
