@@ -1,16 +1,13 @@
 package deu.gdsc.memo.dto;
 
-import java.sql.Timestamp;
-
 public class MemoResponse {
     private Long id;
     private String title;
     private String content;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    private String createdAt;
+    private String updatedAt;
 
     // Getters and Setters
-
     public Long getId() {
         return id;
     }
@@ -35,24 +32,24 @@ public class MemoResponse {
         this.content = content;
     }
 
-    public Timestamp getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
 
     // Constructor
-    public MemoResponse(Long id, String title, String content, Timestamp createdAt, Timestamp updatedAt) {
+    public MemoResponse(Long id, String title, String content, String createdAt, String updatedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
